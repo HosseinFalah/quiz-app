@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useCallback, useState } from "react";
 
 import { quiz } from "../constants/data";
+import { QuizAnswers, QuizButtons, QuizResult } from "@/components";
 
 const Quiz = () => {
     const [activeQuestion, setActiveQuestion] = useState(0);
@@ -18,22 +18,19 @@ const Quiz = () => {
     });
     
     const { questions } = quiz;
-    const { answers, correctAnswer } = questions[activeQuestion];
-
+    const { answers, correctAnswer }  = questions[activeQuestion]
     // Select And Check
 
-    const handleAnswerSelected = (answer, index) => {
+    const handleAnswerSelected = useCallback((answer, index) => {
         setChecked(true);
         setSelectedAnswerIndex(index);
         
         if (answer === correctAnswer) {
             setSelectedAnswer(true);
-            console.log("true answer");
         } else {
             setSelectedAnswer(false);
-            console.log("false answer");
         }
-    }
+    }, [answers])
 
     // Calculate Score and Increment to next question
     const handleNextQuestion = () => {
@@ -56,7 +53,7 @@ const Quiz = () => {
 
     return (
         <main className="min-h-screen bg-indigo-900">
-            <div className="lg:max-w-screen-lg m-auto">
+            <div className="lg:max-w-screen-lg m-auto px-4 lg:px-0">
                 <h1 className="dark:text-white text-3xl font-bold pt-10">صفحه آزمون</h1>
                 <div className="mt-8">
                     {!showResult ? (
@@ -67,55 +64,27 @@ const Quiz = () => {
                     {!showResult ? (
                         <div className="p-4">
                             <h3 className="dark:text-white text-2xl font-medium">{questions[activeQuestion].question}</h3>
-                            <ul className="mt-4">
-                                {
-                                    answers.map((answer, index) => (
-                                        <li 
-                                            key={index} 
-                                            onClick={() => handleAnswerSelected(answer, index)} 
-                                            className={`${selectedAnswerIndex === index ? 
-                                                'border border-zinc-500 bg-blue-600 rounded p-2 my-4' 
-                                                :
-                                                'border border-zinc-500 rounded p-2 my-4 transition-all duration-300 ease-in-out hover:bg-zinc-500'}`}
-                                        >
-                                            <p className="dark:text-white">{answer}</p>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
+                                <ul className="mt-4">
+                                    <QuizAnswers 
+                                        answers={answers}
+                                        handleAnswerSelected={handleAnswerSelected}
+                                        selectedAnswerIndex={selectedAnswerIndex}
+                                    />
+                                </ul>
                             <div className="grid">
-                                {
-                                    checked ? (
-                                        <button 
-                                            className="dark:bg-indigo-600 dark:text-white py-2 rounded-lg transition-all duration-300 ease-in-out hover:bg-indigo-700" 
-                                            onClick={handleNextQuestion}
-                                        >
-                                                {activeQuestion === questions.length - 1 ? 'پایان' : 'بعدی'}
-                                            </button>
-                                        ) : (
-                                            <button 
-                                                className="dark:bg-indigo-400 dark:text-white py-2 rounded-lg disabled:opacity-60" 
-                                                onClick={handleNextQuestion} 
-                                                disabled
-                                            >
-                                                {activeQuestion === questions.length - 1 ? 'پایان' : 'بعدی'}
-                                            </button>
-                                        )
-                                }
+                                <QuizButtons 
+                                    activeQuestion={activeQuestion}
+                                    checked={checked}
+                                    handleNextQuestion={handleNextQuestion}
+                                    questions={questions}
+                                />
                             </div>
                         </div>
                     ) : (
-                        <div className="flex flex-col gap-y-3 p-4 dark:text-white">
-                            <h3 className="text-3xl font-semibold">نمایش نتایج</h3>
-                            <h3 className="text-xl font-medium mt-6">به {(result.score / 25) * 100}% سوالات جواب داده شده</h3>
-                            <p className="text-sm font-medium text-zinc-300">کل سوالات: {questions.length}</p>
-                            <p className="text-sm font-medium text-zinc-300">کل امتیاز: {result.score}</p>
-                            <p className="text-sm font-medium text-zinc-300">سوالات درست: {result.correctAnswers}</p>
-                            <p className="text-sm font-medium text-zinc-300">سوالات غلط: {result.wrongAnswers}</p>
-                            <Link href={`/`} className="dark:bg-indigo-500 block text-center dark:text-white py-2 rounded-lg transition-all duration-300 ease-in-out hover:bg-indigo-700">
-                                شروع مجدد آزمون
-                            </Link>
-                        </div>
+                        <QuizResult 
+                            result={result}
+                            questions={questions} 
+                        />
                     )}
                 </div>
             </div>
