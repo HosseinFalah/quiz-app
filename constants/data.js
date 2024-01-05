@@ -1,6 +1,38 @@
 export const quiz = {
     totalQuestions: 5,
-    questions: [
+    Enquestions: [
+        {
+            id: 1,
+            question: "The number of Olympic rings",
+            answers: ["5 numbers", "6 numbers", "7 numbers", "8 numbers"],
+            correctAnswer: "5 pieces",
+        },
+        {
+            id: 2,
+            question: "In which province is Sahand Heights located?",
+            answers: ["East Azerbaijan", "West Azerbaijan", "Kurdistan", "Zanjan"],
+            correctAnswer: "East Azerbaijan",
+        },
+        {
+            id: 3,
+            question: "Which tree is a symbol of peace",
+            answers: ["cypress", "olive", "apple", "orange"],
+            correctAnswer: "olive",
+        },
+        {
+            id: 4,
+            question: "How many years does plastic containers last?",
+            answers: ["50 years", "500 years", "5 thousand years", "50 thousand years"],
+            correctAnswer: "500 years",
+        },
+        {
+            id: 5,
+            question: "Where are Langerhans Islands located",
+            answers: ["Ocean", "Lands", "Spain", "Skull"],
+            correctAnswer: "Pentiligo",
+        },
+    ],
+    Faquestions: [
         {
             id: 1,
             question: "تعداد حلقه های المپیک",

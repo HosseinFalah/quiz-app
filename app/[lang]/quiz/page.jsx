@@ -2,10 +2,10 @@
 
 import { useCallback, useState } from "react";
 
-import { quiz } from "../constants/data";
-import { QuizAnswers, QuizButtons, QuizResult } from "@/components";
+import { quiz } from "@/constants/data";
+import { LocalSwitcher, QuizAnswers, QuizButtons, QuizResult } from "@/components";
 
-const Quiz = () => {
+const Quiz = ({ dict, lang }) => {
     const [activeQuestion, setActiveQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState("");
     const [checked, setChecked] = useState(false);
@@ -17,7 +17,7 @@ const Quiz = () => {
         wrongAnswers: 0
     });
     
-    const { questions } = quiz;
+    const questions = lang === "en-us" ? quiz.Enquestions : quiz.Faquestions;
     const { answers, correctAnswer }  = questions[activeQuestion]
     // Select And Check
 
@@ -54,10 +54,13 @@ const Quiz = () => {
     return (
         <main className="min-h-screen bg-indigo-900">
             <div className="lg:max-w-screen-lg m-auto px-4 lg:px-0">
-                <h1 className="dark:text-white text-3xl font-bold pt-10">صفحه آزمون</h1>
+                <div className="pt-5">
+                    <LocalSwitcher/>
+                </div>
+                <h1 className="dark:text-white text-3xl font-bold pt-10">{dict['quiz'].title}</h1>
                 <div className="mt-8">
                     {!showResult ? (
-                        <h2 className="text-xl font-medium text-white">آزمون: {activeQuestion + 1} از {questions.length}</h2>
+                        <h2 className="text-xl font-medium text-white">{dict['quiz'].quizNum1}: {activeQuestion + 1} {dict['quiz'].quizNum2} {questions.length}</h2>
                     ) : null}
                 </div>
                 <div className="dark:bg-zinc-700 drop-shadow-2xl rounded-xl mt-10">
@@ -69,6 +72,7 @@ const Quiz = () => {
                                         answers={answers}
                                         handleAnswerSelected={handleAnswerSelected}
                                         selectedAnswerIndex={selectedAnswerIndex}
+                                        dict={dict}
                                     />
                                 </ul>
                             <div className="grid">
@@ -77,13 +81,15 @@ const Quiz = () => {
                                     checked={checked}
                                     handleNextQuestion={handleNextQuestion}
                                     questions={questions}
+                                    dict={dict}
                                 />
                             </div>
                         </div>
                     ) : (
                         <QuizResult 
                             result={result}
-                            questions={questions} 
+                            questions={questions}
+                            dict={dict}
                         />
                     )}
                 </div>

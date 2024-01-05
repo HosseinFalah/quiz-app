@@ -1,0 +1,38 @@
+{
+    "main": {
+        "appName": "Quiz app",
+        "appStartBtn": "Start the quiz"
+    },
+    "quiz": {
+        "title": "Quiz app",
+        "quiz": "Quiz",
+        "quizNum1": "Quiz",
+        "quizNum2": "From",
+        "nextBtn": "next question",
+        "finishBtn": "End",
+        "result": "Result Quiz",
+        "resultScoreMsg1": "Generally",
+        "resultScroreMsg2": "Questions answered",
+        "quizCount": "Number of questions",
+        "quizScore": "Total score",
+        "quizCorrect": "The right questions",
+        "quizWrong": "wrong questions",
+        "quizRestart": "restart Quiz"
+    },
+    "about": {
+        "fullname": "Hossein Falah",
+        "info": "JavaScript developer"
+    },
+    "notFound": {
+        "message": "We did not find the page you are looking for",
+        "backToHome": "return to home"
+    },
+    "error": {
+        "message": "There is a problem",
+        "tryAgain": "try again"
+    },
+    "update-app": {
+        "title": "We are very ashamed",
+        "message": "We are updating, please come back soon"
+    }
+}

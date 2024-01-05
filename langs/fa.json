@@ -1,0 +1,38 @@
+{
+    "main": {
+        "appName": "اپلیکیشن کوئیز",
+        "appStartBtn": "شروع کوئیز"
+    },
+    "quiz": {
+        "title": "اپلیکیشن کوئیز",
+        "quiz": "کوئیز",
+        "quizNum1": "کوئیز",
+        "quizNum2": "از",
+        "nextBtn": "سوال بعدی",
+        "finishBtn": "پایان",
+        "result": "نتیجه کوئیز",
+        "resultScoreMsg1": "به طور کلی",
+        "resultScroreMsg2": "سوالات جواب داده شده",
+        "quizCount": "تعداد سوالات",
+        "quizScore": "کل امتیاز",
+        "quizCorrect": "سوالات درست",
+        "quizWrong": "سوالات غلط",
+        "quizRestart": "شروع مجدد کوئیز"
+    },
+    "about": {
+        "fullname": "حسین فلاح",
+        "info": "برنامه نویس JavaScript"
+    },
+    "notFound": {
+        "message": "صفحه ای که دنبالش هستی رو پیدا نکردیم",
+        "backToHome": "برگشت به خانه"
+    },
+    "error": {
+        "message": "مشکلی پیش امده",
+        "tryAgain": "دوباره تلاش کن"
+    },
+    "update-app": {
+        "title": "خیلی شرمنده می باشیم",
+        "message": "در حال بروزرسانی هستیم لطفا مدتی دیگر مراجعه بفرمایید"
+    }
+}
